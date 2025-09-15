@@ -20,11 +20,11 @@ jobs:
       packages: read
     runs-on: ubuntu-latest
 
-    # container:
-    #   image: ubuntu:latest      
-    #   env:
-    #       MOUNTED_TARGET_DIR: /target
-    #       MOUNTED_TESTS_DIR: /test-results
+    container:
+      image: ubuntu:latest      
+      env:
+          MOUNTED_TARGET_DIR: /target
+          MOUNTED_TESTS_DIR: /test-results
     
     steps:
     - name: Checkout repository
