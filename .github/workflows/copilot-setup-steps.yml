@@ -1,15 +1,30 @@
-name: Copilot Setup Steps
+name: "Copilot Setup Steps"
 
+# Automatically run the setup steps when they are changed to allow for easy validation, and
+# allow manual testing through the repository's "Actions" tab
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
   workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
 
 jobs:
-  copilot-setup:
+  # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
+  copilot-setup-steps:
+    name: Setup Copilot
+    permissions:
+      contents: read
+      packages: read
     runs-on: ubuntu-latest
+
+    # container:
+    #   image: ubuntu:latest      
+    #   env:
+    #       MOUNTED_TARGET_DIR: /target
+    #       MOUNTED_TESTS_DIR: /test-results
     
     steps:
     - name: Checkout repository
@@ -43,3 +58,5 @@ jobs:
         echo "=== Basic Validation ==="
         echo "Repository validation completed successfully"
         echo "Copilot setup steps executed"
+
+
