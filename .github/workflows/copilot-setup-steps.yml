@@ -52,4 +52,10 @@ jobs:
         echo "=== Basic Validation ==="
         echo "Repository validation completed successfully"
         echo "Copilot setup steps executed"
+    
+    - name: Test manual firewall disable
+      run: |
+        echo "=== Testing Manual Firewall Disable ==="
+        python3 test_firewall_manual_disable.py
+        echo "=== Firewall Disable Test Completed ==="
       

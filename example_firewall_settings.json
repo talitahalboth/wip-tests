@@ -1,0 +1,20 @@
+{
+  "description": "Example firewall settings configuration",
+  "firewall": {
+    "enabled": false,
+    "manually_disabled": true,
+    "disabled_by": "user_settings",
+    "disabled_timestamp": "2024-01-01T00:00:00Z",
+    "disable_reason": "User manually disabled firewall from settings interface"
+  },
+  "security": {
+    "allow_manual_firewall_disable": true,
+    "require_admin_approval": false,
+    "log_firewall_changes": true
+  },
+  "ui_settings": {
+    "show_firewall_toggle": true,
+    "show_warning_on_disable": true,
+    "confirm_disable_action": true
+  }
+}
