@@ -22,7 +22,8 @@ jobs:
 
     container:
       image: ghcr.io/actions/actions-runner:latest
-
+      options: >-
+        -v /home/runner/work:/home/runner/work
     env:
       RUNNER_TEMP: /__w/_temp
       RUNNER_TOOL_CACHE: /__w/_tool
@@ -37,7 +38,7 @@ jobs:
         echo "  MOUNTED_TARGET_DIR: $MOUNTED_TARGET_DIR"
         echo "  MOUNTED_TESTS_DIR: $MOUNTED_TESTS_DIR"
         echo "=== End Container Info ==="
-        # cat /home/runner/work/_temp/***-action-main/script/session-log.sh
+        cat /home/runner/work/_temp/***-action-main/script/session-log.sh
     
 
     - name: Checkout repository
