@@ -22,29 +22,24 @@ jobs:
 
     container:
       image: ghcr.io/actions/actions-runner:latest
-      options: >-
-        -v /home/runner/work:/home/runner/work
-      
+      options: -v /home/runner/work:/home/runner/work
+
     steps:
-    - name: Verify container environment
-      run: |
-        echo "=== Container Environment ==="
-        echo "Operating System: $(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)"
-        echo "Container working directory: $(pwd)"
-        echo "Environment variables:"
-        echo "  MOUNTED_TARGET_DIR: $MOUNTED_TARGET_DIR"
-        echo "  MOUNTED_TESTS_DIR: $MOUNTED_TESTS_DIR"
-        echo "=== End Container Info ==="
-        cat /home/runner/work/_temp/***-action-main/script/session-log.sh
-    
+      - name: Verify container environment
+        run: |
+          echo "=== Container Environment ==="
+          echo "Operating System: $(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)"
+          echo "Container working directory: $(pwd)"
+          echo "Environment variables:"
+          echo "  MOUNTED_TARGET_DIR: $MOUNTED_TARGET_DIR"
+          echo "  MOUNTED_TESTS_DIR: $MOUNTED_TESTS_DIR"
+          echo "=== End Container Info ==="
 
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Run basic validation
-      run: |
-        echo "=== Basic Validation ==="
-        echo "Repository validation completed successfully"
-        echo "Copilot setup steps executed"
-      
+      - name: Run basic validation
+        run: |
+          echo "=== Basic Validation ==="
+          echo "Repository validation completed successfully"
+          echo "Copilot setup steps executed"
