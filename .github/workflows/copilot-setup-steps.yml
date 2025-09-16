@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ubuntu:latest      
+      image: ghcr.io/actions/actions-runner:latest
     steps:
     - name: Verify container environment
       run: |
