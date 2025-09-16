@@ -27,6 +27,7 @@ jobs:
     env:
       RUNNER_TEMP: /__w/_temp
       RUNNER_TOOL_CACHE: /__w/_tool
+      COPILOT_AGENT_FIREWALL_ENABLED: "false"
       
     steps:
     - name: Verify container environment
