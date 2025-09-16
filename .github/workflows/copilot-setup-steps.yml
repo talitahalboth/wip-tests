@@ -24,10 +24,6 @@ jobs:
       image: ghcr.io/actions/actions-runner:latest
       options: >-
         -v /home/runner/work:/home/runner/work
-    env:
-      RUNNER_TEMP: /__w/_temp
-      RUNNER_TOOL_CACHE: /__w/_tool
-      COPILOT_AGENT_FIREWALL_ENABLED: false
       
     steps:
     - name: Verify container environment
@@ -40,7 +36,6 @@ jobs:
         echo "  MOUNTED_TESTS_DIR: $MOUNTED_TESTS_DIR"
         echo "=== End Container Info ==="
         cat /home/runner/work/_temp/***-action-main/script/session-log.sh
-        export COPILOT_AGENT_FIREWALL_ENABLED=false
     
 
     - name: Checkout repository
