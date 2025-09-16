@@ -35,11 +35,13 @@ jobs:
         echo "  MOUNTED_TARGET_DIR: $MOUNTED_TARGET_DIR"
         echo "  MOUNTED_TESTS_DIR: $MOUNTED_TESTS_DIR"
         echo "=== End Container Info ==="
-        cat /home/runner/work/_temp/***-action-main/script/session-log.sh
     
 
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name: Set MOUNTED_SOURCE_DIR
+      run: echo "MOUNTED_SOURCE_DIR=$(pwd)" >> $GITHUB_ENV
     
 
     - name: Run basic validation
@@ -47,4 +49,5 @@ jobs:
         echo "=== Basic Validation ==="
         echo "Repository validation completed successfully"
         echo "Copilot setup steps executed"
+        echo $MOUNTED_SOURCE_DIR
       
