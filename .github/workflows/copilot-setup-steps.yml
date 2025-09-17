@@ -24,6 +24,7 @@ jobs:
       image: mcr.microsoft.com/devcontainers/base:ubuntu
       options: >-
         -v /home/runner/work:/home/runner/work
+        --privileged
       
     steps:
     - name: Verify container environment
