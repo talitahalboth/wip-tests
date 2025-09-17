@@ -35,7 +35,8 @@ jobs:
         echo "  MOUNTED_TARGET_DIR: $MOUNTED_TARGET_DIR"
         echo "  MOUNTED_TESTS_DIR: $MOUNTED_TESTS_DIR"
         echo "=== End Container Info ==="
-    
+        cat /home/runner/work/_temp/***-action-main/ebpf/launch.sh
+        
 
     - name: Checkout repository
       uses: actions/checkout@v4
