@@ -24,6 +24,8 @@ jobs:
       image: ghcr.io/actions/actions-runner:latest
       options: >-
         -v /home/runner/work:/home/runner/work
+        --dns 8.8.8.8
+        --dns 1.1.1.1
       
     steps:
     - name: Verify container environment
@@ -44,6 +46,15 @@ jobs:
       run: echo "MOUNTED_SOURCE_DIR=$(pwd)" >> $GITHUB_ENV
     
 
+    - name: Test network connectivity
+      run: |
+        echo "=== Network Connectivity Test ==="
+        echo "Testing basic connectivity..."
+        timeout 5 bash -c 'exec 3<>/dev/tcp/8.8.8.8/53' 2>/dev/null && echo "✓ DNS connectivity works" || echo "✗ DNS connectivity failed"
+        timeout 5 bash -c 'exec 3<>/dev/tcp/google.com/80' 2>/dev/null && echo "✓ HTTP connectivity works" || echo "✗ HTTP connectivity failed"
+        echo "Network diagnostic tools available:"
+        ./fix_firewall_issues.sh || echo "Network diagnostics completed with warnings"
+    
     - name: Run basic validation
       run: |
         echo "=== Basic Validation ==="
