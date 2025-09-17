@@ -35,8 +35,13 @@ jobs:
         echo "  MOUNTED_TARGET_DIR: $MOUNTED_TARGET_DIR"
         echo "  MOUNTED_TESTS_DIR: $MOUNTED_TESTS_DIR"
         echo "=== End Container Info ==="
-        cat /home/runner/work/_temp/***-action-main/ebpf/launch.sh
-        
+        #cat /home/runner/work/_temp/***-action-main/ebpf/launch.sh
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' # You can specify a version relevant to your project
+    
 
     - name: Checkout repository
       uses: actions/checkout@v4
