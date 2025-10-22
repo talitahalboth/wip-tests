@@ -1,0 +1,16 @@
+{
+  "name": "wip-tests",
+  "version": "1.0.0",
+  "description": "A simple calculator implementation",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node calculator.js"
+  },
+  "keywords": ["calculator", "demo"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
