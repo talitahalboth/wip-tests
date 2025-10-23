@@ -43,28 +43,31 @@ jobs:
       with:
         node-version: '20' # You can specify a version relevant to your project
     
-
+    
     - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Set MOUNTED_SOURCE_DIR
       run: echo "MOUNTED_SOURCE_DIR=$(pwd)" >> $GITHUB_ENV
     
-
-    - name: Run basic validationenv:
-      MY_VARIABLE_IN_SHELL: ${{ vars.MY_VARIABLE_NAME }}
+    - name: Run basic validation
+      # This env block maps your context vars/secrets to shell variables
+      env:
+        MY_VARIABLE_IN_SHELL: ${{ vars.MY_VARIABLE_NAME }}
+        MY_SECRET_IN_SHELL: ${{ secrets.MY_SECRET_NAME }}
       run: |
         echo "=== Basic Validation ==="
         echo "Repository validation completed successfully"
         echo "Copilot setup steps executed"
-        echo $MOUNTED_SOURCE_DIR
+        
+        # Use the built-in $GITHUB_WORKSPACE variable set by actions/checkout
+        echo "Workspace directory: $GITHUB_WORKSPACE"
         git config --global --add safe.directory "*"
-        echo "MY_SECRET_NAME: ${{ secrets.MY_SECRET_NAME }}"
-        # The variable is accessed directly with $
-        echo "My variable is $MY_VARIABLE_NAME"
+        
+        # Now, use the shell variables you defined in the 'env:' block above
+        echo "My variable is: $MY_VARIABLE_IN_SHELL"
+        echo "My secret is: $MY_SECRET_IN_SHELL"
         echo "------------------"
         
-        echo "Password=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
     - name: Print environment variables
       run: env
-      
