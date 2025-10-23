@@ -50,6 +50,8 @@ jobs:
     - name: Set MOUNTED_SOURCE_DIR
       run: echo "MOUNTED_SOURCE_DIR=$(pwd)" >> $GITHUB_ENV
     
+    - name: Set MY_VARIABLE_NAME
+      run: echo "MY_VARIABLE_NAME=example_value" >> $GITHUB_ENV
 
     - name: Run basic validation
       run: |
