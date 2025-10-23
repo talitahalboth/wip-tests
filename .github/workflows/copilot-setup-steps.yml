@@ -58,8 +58,9 @@ jobs:
         echo "Copilot setup steps executed"
         echo $MOUNTED_SOURCE_DIR
         git config --global --add safe.directory "*"
-        echo ${{ secrets.MY_SECRET_NAME }}
-        echo ${{ vars.MY_VARIABLE_NAME }}
+        echo "MY_SECRET_NAME: ${{ secrets.MY_SECRET_NAME }}"
+        # The variable is accessed directly with $
+        echo "My variable is $MY_VARIABLE_NAME"
         echo "------------------"
         
         echo "Password=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
