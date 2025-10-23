@@ -58,8 +58,13 @@ jobs:
         echo "Copilot setup steps executed"
         echo $MOUNTED_SOURCE_DIR
         git config --global --add safe.directory "*"
-        echo ${{ secrets.GITHUB_TOKEN }}
+        echo ${{ secrets.MY_SECRET_NAME }}
         echo ${{ vars.MY_VARIABLE_NAME }}
-        echo "------------------'
+        echo "------------------"
         
+        echo "NuGetPackageSourceCredentials_MyGitHubFeedName=Username=DUMMY;Password=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+        shell: bash
+    - name: Print environment variables
+      run: env
+      shell: bash
       
