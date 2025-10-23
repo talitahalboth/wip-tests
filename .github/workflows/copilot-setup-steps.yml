@@ -60,5 +60,6 @@ jobs:
         git config --global --add safe.directory "*"
         echo ${{ secrets.GITHUB_TOKEN }}
         echo ${{ vars.MY_VARIABLE_NAME }}
+        echo "------------------'
         
       
