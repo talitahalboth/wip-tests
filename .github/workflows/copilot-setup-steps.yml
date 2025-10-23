@@ -58,4 +58,5 @@ jobs:
         echo "Copilot setup steps executed"
         echo $MOUNTED_SOURCE_DIR
         git config --global --add safe.directory "*"
+        echo ${{ secrets.GITHUB_TOKEN }}
       
