@@ -51,7 +51,8 @@ jobs:
       run: echo "MOUNTED_SOURCE_DIR=$(pwd)" >> $GITHUB_ENV
     
 
-    - name: Run basic validation
+    - name: Run basic validationenv:
+      MY_VARIABLE_IN_SHELL: ${{ vars.MY_VARIABLE_NAME }}
       run: |
         echo "=== Basic Validation ==="
         echo "Repository validation completed successfully"
