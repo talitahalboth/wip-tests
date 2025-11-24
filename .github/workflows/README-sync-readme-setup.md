@@ -2,9 +2,9 @@
 
 This document describes how to set up GPG commit signing for the `sync-readme.yml` workflow.
 
-## Required Secrets
+## Secrets Configuration
 
-The workflow requires the following secrets to be configured in the repository settings:
+The workflow supports optional GPG commit signing. Configure the following secrets to enable this feature:
 
 ### 1. TARGET_REPO_PAT
 - **Description**: Personal Access Token (PAT) with write access to the target repository
@@ -12,8 +12,9 @@ The workflow requires the following secrets to be configured in the repository s
   - `repo` (Full control of private repositories)
   - `workflow` (if the target repository has workflows)
 
-### 2. GPG_PRIVATE_KEY
+### 2. GPG_PRIVATE_KEY (Optional - for commit signing)
 - **Description**: Your GPG private key in ASCII-armored format
+- **Note**: If this secret is not configured, the workflow will work normally but commits will not be GPG signed
 - **How to generate**:
   ```bash
   # Generate a new GPG key (if you don't have one)
@@ -24,9 +25,9 @@ The workflow requires the following secrets to be configured in the repository s
   ```
 - **Note**: Copy the entire output including the `-----BEGIN PGP PRIVATE KEY BLOCK-----` and `-----END PGP PRIVATE KEY BLOCK-----` lines
 
-### 3. GPG_PASSPHRASE
+### 3. GPG_PASSPHRASE (Optional)
 - **Description**: The passphrase for your GPG private key
-- **Note**: If your GPG key doesn't have a passphrase, you can omit this secret or set it to an empty string
+- **Note**: This secret is only required if your GPG key is protected with a passphrase. If your key has no passphrase, you can skip adding this secret entirely
 
 ## How to Add Secrets
 

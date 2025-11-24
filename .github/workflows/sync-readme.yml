@@ -28,7 +28,8 @@ jobs:
         token: ${{ secrets.TARGET_REPO_PAT }}
         path: target
     
-    - name: Import GPG key
+    - name: Import GPG key (optional)
+      if: ${{ secrets.GPG_PRIVATE_KEY != '' }}
       uses: crazy-max/ghaction-import-gpg@v6
       with:
         gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -55,4 +56,3 @@ jobs:
           
           This is an automated sync triggered by the sync-readme workflow.
         labels: automated,documentation
-        commit-gpg-sign: true
