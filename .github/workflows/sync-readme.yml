@@ -28,6 +28,15 @@ jobs:
         token: ${{ secrets.TARGET_REPO_PAT }}
         path: target
     
+    - name: Import GPG key
+      uses: crazy-max/ghaction-import-gpg@v6
+      with:
+        gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+        passphrase: ${{ secrets.GPG_PASSPHRASE }}
+        git_user_signingkey: true
+        git_commit_gpgsign: true
+        workdir: target
+    
     - name: Copy README.md
       run: |
         cp source/README.md target/README.md
@@ -46,3 +55,4 @@ jobs:
           
           This is an automated sync triggered by the sync-readme workflow.
         labels: automated,documentation
+        commit-gpg-sign: true
