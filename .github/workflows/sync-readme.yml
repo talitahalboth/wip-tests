@@ -1,0 +1,48 @@
+name: Sync README to wip-tests-2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+
+jobs:
+  sync-readme:
+    name: Sync README to target repository
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout source repository
+      uses: actions/checkout@v4
+      with:
+        path: source
+    
+    - name: Checkout target repository
+      uses: actions/checkout@v4
+      with:
+        repository: talitahalboth/wip-tests-2
+        token: ${{ secrets.TARGET_REPO_PAT }}
+        path: target
+    
+    - name: Copy README.md
+      run: |
+        cp source/README.md target/README.md
+    
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        path: target
+        token: ${{ secrets.TARGET_REPO_PAT }}
+        commit-message: 'Sync README.md from wip-tests repository'
+        branch: sync-readme-from-wip-tests
+        delete-branch: true
+        title: 'Update README.md from wip-tests repository'
+        body: |
+          This PR updates the README.md file to match the content from the [wip-tests](https://github.com/talitahalboth/wip-tests) repository.
+          
+          This is an automated sync triggered by the sync-readme workflow.
+        labels: |
+          automated
+          documentation
