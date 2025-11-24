@@ -12,6 +12,8 @@ jobs:
   sync-readme:
     name: Sync README to target repository
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     
     steps:
     - name: Checkout source repository
