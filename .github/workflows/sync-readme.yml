@@ -43,6 +43,4 @@ jobs:
           This PR updates the README.md file to match the content from the [wip-tests](https://github.com/talitahalboth/wip-tests) repository.
           
           This is an automated sync triggered by the sync-readme workflow.
-        labels: |
-          automated
-          documentation
+        labels: automated,documentation
