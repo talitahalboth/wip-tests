@@ -19,6 +19,9 @@ jobs:
       contents: read
       packages: read
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash  # <--- This forces all 'run' steps to use Bash
 
     container:
       image: mcr.microsoft.com/devcontainers/base:ubuntu
