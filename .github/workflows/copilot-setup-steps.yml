@@ -24,9 +24,10 @@ jobs:
         shell: bash 
 
     container:
-      image: mcr.microsoft.com/devcontainers/universal:linux
+      image: mcr.microsoft.com/devcontainers/base:ubuntu # Or your egym image
       options: >-
-        -v /home/runner/work:/home/runner/work
+        --entrypoint /bin/sh
+        -c "ln -sf /bin/bash /bin/sh && exec /bin/sh"
         --privileged
       
     steps:
