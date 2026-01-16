@@ -1,19 +1,36 @@
 name: "Copilot Setup Steps"
 
+# Automatically run the setup steps when they are changed to allow for easy validation, and
+# allow manual testing through the repository's "Actions" tab
 on:
   workflow_dispatch:
   push:
     paths:
       - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
 
 jobs:
+  # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
   copilot-setup-steps:
     name: Setup Copilot
-    runs-on: ubuntu-latest
     permissions:
       contents: read
-    
-    # Remove the container block temporarily to test
+      packages: read
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash 
+
+    container:
+      image: mcr.microsoft.com/devcontainers/base:ubuntu
+      env:
+        SHELL: /bin/bash
+      options: >-
+        -v /home/runner/work:/home/runner/work
+        --privileged
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
