@@ -30,17 +30,7 @@ jobs:
         --privileged
       
     steps:
-    - name: Verify container environment
-      run: |
-        echo "=== Container Environment ==="
-        echo "Operating System: $(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)"
-        echo "Container working directory: $(pwd)"
-        echo "Environment variables:"
-        echo "  MOUNTED_TARGET_DIR: $MOUNTED_TARGET_DIR"
-        echo "  MOUNTED_TESTS_DIR: $MOUNTED_TESTS_DIR"
-        echo "=== End Container Info ==="
-        #cat /home/runner/work/_temp/***-action-main/ebpf/launch.sh
-    
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
@@ -49,6 +39,3 @@ jobs:
     
     - name: Checkout repository
       uses: actions/checkout@v4
-        
-    - name: Print environment variables
-      run: env
