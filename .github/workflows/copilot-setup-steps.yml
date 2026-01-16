@@ -19,55 +19,27 @@ jobs:
       contents: read
       packages: read
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash 
 
     container:
       image: mcr.microsoft.com/devcontainers/base:ubuntu
+      env:
+        SHELL: /bin/bash
       options: >-
         -v /home/runner/work:/home/runner/work
         --privileged
+        --entrypoint /bin/bash
       
     steps:
-    - name: Verify container environment
-      run: |
-        echo "=== Container Environment ==="
-        echo "Operating System: $(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)"
-        echo "Container working directory: $(pwd)"
-        echo "Environment variables:"
-        echo "  MOUNTED_TARGET_DIR: $MOUNTED_TARGET_DIR"
-        echo "  MOUNTED_TESTS_DIR: $MOUNTED_TESTS_DIR"
-        echo "=== End Container Info ==="
-        #cat /home/runner/work/_temp/***-action-main/ebpf/launch.sh
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20' # You can specify a version relevant to your project
-    
-    
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set MOUNTED_SOURCE_DIR
-      run: echo "MOUNTED_SOURCE_DIR=$(pwd)" >> $GITHUB_ENV
-    
-    - name: Run basic validation
-      # This env block maps your context vars/secrets to shell variables
-      env:
-        MY_VARIABLE_IN_SHELL: ${{ vars.MY_VARIABLE_NAME }}
-        MY_SECRET_IN_SHELL: ${{ secrets.MY_SECRET_NAME }}
-      run: |
-        echo "=== Basic Validation ==="
-        echo "Repository validation completed successfully"
-        echo "Copilot setup steps executed"
-        
-        # Use the built-in $GITHUB_WORKSPACE variable set by actions/checkout
-        echo "Workspace directory: $GITHUB_WORKSPACE"
-        git config --global --add safe.directory "*"
-        
-        # Now, use the shell variables you defined in the 'env:' block above
-        echo "My variable is: $MY_VARIABLE_IN_SHELL"
-        echo "My secret is: $MY_SECRET_IN_SHELL"
-        echo "------------------"
-        
-    - name: Print environment variables
-      run: env
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Verify Shell
+        run: echo "The current shell is $SHELL"
