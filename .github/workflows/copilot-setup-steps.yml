@@ -24,8 +24,9 @@ jobs:
         shell: bash 
 
     container:
-      image: bitnami/minideb:latest
+      image: mcr.microsoft.com/devcontainers/base:ubuntu
       options: >-
+        --entrypoint /bin/sh
         --privileged
       
     steps:
