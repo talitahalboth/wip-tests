@@ -30,6 +30,7 @@ jobs:
       options: >-
         -v /home/runner/work:/home/runner/work
         --privileged
+        --entrypoint /bin/bash
       
     steps:
       - name: Checkout repository
