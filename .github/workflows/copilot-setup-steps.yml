@@ -24,13 +24,10 @@ jobs:
         shell: bash 
 
     container:
-      image: mcr.microsoft.com/devcontainers/base:ubuntu
-      env:
-        SHELL: /bin/bash
+      image: mcr.microsoft.com/devcontainers/universal:linux
       options: >-
         -v /home/runner/work:/home/runner/work
         --privileged
-        --entrypoint /bin/bash
       
     steps:
       - name: Checkout repository
