@@ -24,7 +24,7 @@ jobs:
         shell: bash 
 
     container:
-      image: bitnami/minideb:latest
+      image: bitnami/node:20
       options: >-
         --privileged
       
