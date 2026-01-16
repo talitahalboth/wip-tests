@@ -24,7 +24,7 @@ jobs:
         shell: bash 
 
     container:
-      image: mcr.microsoft.com/devcontainers/base:ubuntu # Or your egym image
+      image: node:20-alpine
       options: >-
         --entrypoint /bin/sh
         -c "ln -sf /bin/bash /bin/sh && exec /bin/sh"
