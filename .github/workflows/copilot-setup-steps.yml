@@ -24,10 +24,8 @@ jobs:
         shell: bash 
 
     container:
-      image: python:3.11-slim-bookworm
+      image: bitnami/minideb:latest
       options: >-
-        --entrypoint /bin/sh
-        -c "ln -sf /bin/bash /bin/sh && exec /bin/sh"
         --privileged
       
     steps:
